@@ -5,7 +5,7 @@
      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-foreground">
        <Image
          src="/images/hero.jpg"
-         alt="Agnes Okene"
+         alt="Mama Agnes Okene"
          fill
          className="object-cover opacity-40"
          priority
@@ -15,7 +15,7 @@
            In Loving Memory
          </p>
          <h1 className="font-[family-name:var(--font-serif)] text-5xl font-bold text-white md:text-7xl">
-           Agnes Okene
+           Mama Agnes Okene
          </h1>
          <div className="mx-auto mt-6 h-px w-24 bg-gold" />
          <p className="mt-6 text-lg text-white/80 md:text-xl">

@@ -58,7 +58,7 @@
        </h2>
        <Separator className="mx-auto mt-4 w-16 bg-gold" />
        <p className="mt-4 text-center text-muted-foreground">
-         Leave a tribute to celebrate Agnes&apos;s life and legacy.
+         Leave a tribute to celebrate Mama Agnes&apos;s life and legacy.
        </p>
  
        <form

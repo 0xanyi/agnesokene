@@ -2,8 +2,8 @@
  import { GalleryGrid } from "@/components/gallery-grid";
  
  export const metadata = {
-   title: "Gallery | In Loving Memory of Agnes Okene",
-   description: "Photo gallery celebrating the life of Agnes Okene.",
+   title: "Gallery | In Loving Memory of Mama Agnes Okene",
+   description: "Photo gallery celebrating the life of Mama Agnes Okene.",
  };
  
  export default function GalleryPage() {
@@ -14,7 +14,7 @@
        </h1>
        <Separator className="mx-auto mt-4 w-16 bg-gold" />
        <p className="mt-4 text-center text-muted-foreground">
-         Cherished moments from Agnes&apos;s life.
+         Cherished moments from Mama Agnes&apos;s life.
        </p>
        <div className="mt-12">
          <GalleryGrid />

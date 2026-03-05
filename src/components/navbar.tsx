@@ -19,7 +19,7 @@
            href="/"
            className="font-[family-name:var(--font-serif)] text-xl font-semibold text-foreground"
          >
-           Agnes Okene
+           Mama Agnes Okene
          </Link>
          <div className="flex gap-6">
            {links.map((link) => (

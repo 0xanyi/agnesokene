@@ -13,24 +13,24 @@
          <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
            <Image
              src="/images/portrait.jpg"
-             alt="Agnes Okene portrait"
+             alt="Mama Agnes Okene portrait"
              fill
              className="object-cover"
            />
          </div>
          <div className="space-y-4 text-warm-gray leading-relaxed">
            <p>
-             Agnes Okene was a woman of remarkable grace, unwavering faith, and
+             Mama Agnes Okene was a woman of remarkable grace, unwavering faith, and
              boundless love. Born in 1940, she grew up with a deep sense of
              community and an unshakeable commitment to family.
            </p>
            <p>
-             Throughout her life, Agnes touched the hearts of everyone she met.
+             Throughout her life, Mama Agnes touched the hearts of everyone she met.
              She was known for her warm smile, her generous spirit, and her
              ability to make every person feel valued and loved.
            </p>
            <p>
-             A devoted mother, grandmother, and friend, Agnes leaves behind a
+             A devoted mother, grandmother, and friend, Mama Agnes leaves behind a
              legacy of kindness, resilience, and faith. Her memory lives on in
              the countless lives she touched and the love she so freely shared.
            </p>

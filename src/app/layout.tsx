@@ -14,13 +14,13 @@
  });
  
  export const metadata: Metadata = {
-   title: "In Loving Memory of Agnes Okene",
+   title: "In Loving Memory of Mama Agnes Okene",
    description:
-     "A tribute to the beautiful life of Agnes Okene. Share your memories, view photos, and celebrate her legacy.",
+     "A tribute to the beautiful life of Mama Agnes Okene. Share your memories, view photos, and celebrate her legacy.",
    openGraph: {
-     title: "In Loving Memory of Agnes Okene",
+     title: "In Loving Memory of Mama Agnes Okene",
      description:
-       "A tribute to the beautiful life of Agnes Okene. Share your memories and celebrate her legacy.",
+       "A tribute to the beautiful life of Mama Agnes Okene. Share your memories and celebrate her legacy.",
      type: "website",
    },
  };
@@ -36,7 +36,7 @@
          <Navbar />
          <main>{children}</main>
          <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-           <p>In Loving Memory of Agnes Okene</p>
+           <p>In Loving Memory of Mama Agnes Okene</p>
          </footer>
        </body>
      </html>
