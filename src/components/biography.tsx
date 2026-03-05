@@ -41,8 +41,8 @@
              <p className="text-warm-gray leading-[1.8]">
                She was known for her warm smile, her generous spirit, and her
                ability to make every person feel valued and loved. A devoted
-               mother, grandmother, and friend, Mama Agnes leaves behind a
-               legacy of kindness, resilience, and faith.
+               mother, grandmother, great-grandmother, and friend, Mama Agnes
+               leaves behind a legacy of kindness, resilience, and faith.
              </p>
              <p className="text-warm-gray-light italic leading-[1.8]">
                Her memory lives on in the countless lives she touched and the
