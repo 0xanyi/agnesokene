@@ -12,7 +12,7 @@
        <div className="mt-12 grid gap-10 md:grid-cols-[280px_1fr]">
          <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
            <Image
-             src="/images/portrait.jpg"
+             src="/images/mama.JPG"
              alt="Mama Agnes Okene portrait"
              fill
              className="object-cover"
@@ -34,6 +34,14 @@
              legacy of kindness, resilience, and faith. Her memory lives on in
              the countless lives she touched and the love she so freely shared.
            </p>
+           <div className="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg">
+             <Image
+               src="/images/young-mama2.JPG"
+               alt="Young Mama Agnes Okene"
+               fill
+               className="object-cover"
+             />
+           </div>
          </div>
        </div>
      </section>

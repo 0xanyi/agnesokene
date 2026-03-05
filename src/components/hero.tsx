@@ -4,7 +4,7 @@
    return (
      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-foreground">
        <Image
-         src="/images/hero.jpg"
+         src="/images/offical-photo.JPG"
          alt="Mama Agnes Okene"
          fill
          className="object-cover opacity-40"
