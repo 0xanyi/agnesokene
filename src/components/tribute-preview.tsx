@@ -3,7 +3,6 @@
  import { useEffect, useState } from "react";
  import Link from "next/link";
  import { TributeCard } from "@/components/tribute-card";
- import { Separator } from "@/components/ui/separator";
  import { Button } from "@/components/ui/button";
  
  interface Tribute {
@@ -32,53 +31,61 @@
    }, []);
  
    return (
-     <section className="mx-auto max-w-3xl px-6 py-16">
-       <h2 className="font-[family-name:var(--font-serif)] text-3xl font-semibold text-center md:text-4xl">
-         Tributes &amp; Memories
-       </h2>
-       <Separator className="mx-auto mt-4 w-16 bg-gold" />
- 
-       {loading ? (
-         <p className="mt-10 text-center text-muted-foreground">
-           Loading tributes...
-         </p>
-       ) : tributes.length === 0 ? (
-         <div className="mt-10 text-center">
-           <p className="text-muted-foreground">
-             No tributes yet. Be the first to share a memory.
+     <section className="bg-secondary/50 py-24 md:py-32">
+       <div className="mx-auto max-w-3xl px-6">
+         <div className="text-center">
+           <p className="text-[11px] uppercase tracking-[0.4em] text-gold">
+             Words of Love
            </p>
-           <Button asChild className="mt-6 bg-gold text-white hover:bg-gold-light">
-             <Link href="/tributes">Share a Tribute</Link>
-           </Button>
+           <h2 className="mt-3 font-[family-name:var(--font-serif)] text-4xl font-light md:text-5xl">
+             Tributes &amp; Memories
+           </h2>
+           <div className="mx-auto mt-6 h-px w-16 bg-border" />
          </div>
-       ) : (
-         <>
-           <div className="mt-10 space-y-6">
-             {tributes.map((t) => (
-               <TributeCard key={t.id} {...t} />
-             ))}
-           </div>
  
-           <div className="mt-10 flex flex-col items-center gap-3">
-             {total > 3 && (
-               <p className="text-sm text-muted-foreground">
-                 Showing 3 of {total} tributes
-               </p>
-             )}
-             <div className="flex gap-4">
-               <Button
-                 asChild
-                 variant="outline"
-               >
-                 <Link href="/tributes">View All Tributes</Link>
-               </Button>
-               <Button asChild className="bg-gold text-white hover:bg-gold-light">
-                 <Link href="/tributes#share">Share a Tribute</Link>
-               </Button>
-             </div>
+         {loading ? (
+           <p className="mt-16 text-center text-muted-foreground">
+             Loading tributes...
+           </p>
+         ) : tributes.length === 0 ? (
+           <div className="mt-16 text-center">
+             <p className="font-[family-name:var(--font-serif)] text-xl text-warm-gray">
+               No tributes yet. Be the first to share a memory.
+             </p>
+             <Button asChild className="mt-8 bg-gold text-white hover:bg-gold-light">
+               <Link href="/tributes#share">Share a Tribute</Link>
+             </Button>
            </div>
-         </>
-       )}
+         ) : (
+           <>
+             <div className="mt-16 space-y-8">
+               {tributes.map((t) => (
+                 <TributeCard key={t.id} {...t} />
+               ))}
+             </div>
+ 
+             <div className="mt-14 flex flex-col items-center gap-4">
+               {total > 3 && (
+                 <p className="text-xs tracking-wide text-warm-gray-light">
+                   Showing 3 of {total} tributes
+                 </p>
+               )}
+               <div className="flex gap-4">
+                 <Button
+                   asChild
+                   variant="outline"
+                   className="border-border/60 text-warm-gray hover:border-gold hover:text-gold"
+                 >
+                   <Link href="/tributes">View All Tributes</Link>
+                 </Button>
+                 <Button asChild className="bg-gold text-white hover:bg-gold-light">
+                   <Link href="/tributes#share">Share a Tribute</Link>
+                 </Button>
+               </div>
+             </div>
+           </>
+         )}
+       </div>
      </section>
    );
  }

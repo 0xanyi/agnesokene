@@ -5,7 +5,6 @@
  import { Input } from "@/components/ui/input";
  import { Textarea } from "@/components/ui/textarea";
  import { Label } from "@/components/ui/label";
- import { Separator } from "@/components/ui/separator";
  
  export function TributeForm({ onSuccess }: { onSuccess?: () => void }) {
    const [submitting, setSubmitting] = useState(false);
@@ -52,19 +51,24 @@
    }
  
    return (
-     <section className="mx-auto max-w-3xl px-6 py-16">
-       <h2 className="font-[family-name:var(--font-serif)] text-3xl font-semibold text-center md:text-4xl">
-         Share a Memory
-       </h2>
-       <Separator className="mx-auto mt-4 w-16 bg-gold" />
-       <p className="mt-4 text-center text-muted-foreground">
-         Leave a tribute to celebrate Mama Agnes&apos;s life and legacy.
-       </p>
+     <section className="mx-auto max-w-2xl px-6 py-20">
+       <div className="text-center">
+         <p className="text-[11px] uppercase tracking-[0.4em] text-gold">
+           Leave Your Words
+         </p>
+         <h2 className="mt-3 font-[family-name:var(--font-serif)] text-4xl font-light md:text-5xl">
+           Share a Memory
+         </h2>
+         <div className="mx-auto mt-6 h-px w-16 bg-border" />
+         <p className="mt-6 text-warm-gray">
+           Leave a tribute to celebrate Mama Agnes&apos;s life and legacy.
+         </p>
+       </div>
  
        <form
          ref={formRef}
          onSubmit={handleSubmit}
-         className="mt-10 space-y-6"
+         className="mt-12 space-y-6"
        >
          {/* Honeypot - hidden from humans */}
          <div className="absolute -left-[9999px]" aria-hidden="true">
@@ -122,18 +126,18 @@
          <Button
            type="submit"
            disabled={submitting}
-           className="w-full bg-gold text-white hover:bg-gold-light md:w-auto"
+           className="w-full bg-gold text-white hover:bg-gold-light md:w-auto md:px-10"
          >
            {submitting ? "Submitting..." : "Submit Tribute"}
          </Button>
  
          {status === "success" && (
-           <p className="text-sm text-green-700">
+           <p className="text-sm text-green-700" role="alert">
              Thank you for your tribute. It will appear after review.
            </p>
          )}
          {status === "error" && (
-           <p className="text-sm text-destructive">
+           <p className="text-sm text-destructive" role="alert">
              Something went wrong. Please try again later.
            </p>
          )}

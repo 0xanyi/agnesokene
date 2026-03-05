@@ -1,14 +1,14 @@
  import type { Metadata } from "next";
- import { Inter, Playfair_Display } from "next/font/google";
+ import { Montserrat, Cormorant } from "next/font/google";
  import { Navbar } from "@/components/navbar";
  import "./globals.css";
  
- const inter = Inter({
+ const montserrat = Montserrat({
    variable: "--font-geist-sans",
    subsets: ["latin"],
  });
  
- const playfair = Playfair_Display({
+ const cormorant = Cormorant({
    variable: "--font-serif",
    subsets: ["latin"],
  });
@@ -32,11 +32,20 @@
  }>) {
    return (
      <html lang="en">
-       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+       <body className={`${montserrat.variable} ${cormorant.variable} antialiased font-[family-name:var(--font-geist-sans)]`}>
          <Navbar />
          <main>{children}</main>
-         <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-           <p>In Loving Memory of Mama Agnes Okene</p>
+         <footer className="border-t border-border/50 bg-foreground py-16 text-center text-primary-foreground">
+           <p className="font-[family-name:var(--font-serif)] text-2xl font-light italic tracking-wide">
+             &ldquo;To live in the hearts of those we leave behind is not to die.&rdquo;
+           </p>
+           <div className="mx-auto mt-6 h-px w-16 bg-gold/40" />
+           <p className="mt-6 text-sm tracking-widest uppercase opacity-60">
+             In Loving Memory of Mama Agnes Okene
+           </p>
+           <p className="mt-1 text-xs opacity-40">
+             1939 &mdash; 2026
+           </p>
          </footer>
        </body>
      </html>

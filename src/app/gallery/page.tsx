@@ -1,4 +1,3 @@
- import { Separator } from "@/components/ui/separator";
  import { GalleryGrid } from "@/components/gallery-grid";
  
  export const metadata = {
@@ -8,15 +7,20 @@
  
  export default function GalleryPage() {
    return (
-     <div className="mx-auto max-w-6xl px-6 py-16">
-       <h1 className="font-[family-name:var(--font-serif)] text-4xl font-semibold text-center md:text-5xl">
-         Photo Gallery
-       </h1>
-       <Separator className="mx-auto mt-4 w-16 bg-gold" />
-       <p className="mt-4 text-center text-muted-foreground">
-         Cherished moments from Mama Agnes&apos;s life.
-       </p>
-       <div className="mt-12">
+     <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+       <div className="text-center">
+         <p className="text-[11px] uppercase tracking-[0.4em] text-gold">
+           Cherished Moments
+         </p>
+         <h1 className="mt-3 font-[family-name:var(--font-serif)] text-5xl font-light md:text-6xl">
+           Photo Gallery
+         </h1>
+         <div className="mx-auto mt-6 h-px w-16 bg-border" />
+         <p className="mt-6 text-warm-gray">
+           A collection of treasured memories from Mama Agnes&apos;s life.
+         </p>
+       </div>
+       <div className="mt-16">
          <GalleryGrid />
        </div>
      </div>

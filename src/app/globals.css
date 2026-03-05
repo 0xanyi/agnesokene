@@ -11,10 +11,14 @@
   --font-mono: var(--font-geist-mono);
    --font-serif: "Playfair Display", Georgia, serif;
    --color-gold: #B8860B;
-   --color-gold-light: #D4A843;
-   --color-cream: #FAF8F5;
-   --color-warm-gray: #6B6560;
-  --color-sidebar-ring: var(--sidebar-ring);
+   --font-serif: "Cormorant", Georgia, serif;
+   --color-gold: #A0845C;
+   --color-gold-light: #C4A97D;
+   --color-gold-dark: #7A6340;
+   --color-cream: #F9F7F4;
+   --color-cream-dark: #EDE8E1;
+   --color-warm-gray: #5C5652;
+   --color-warm-gray-light: #8A847E;
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
@@ -54,24 +58,24 @@
 
 :root {
   --radius: 0.625rem;
-   --background: #FAF8F5;
-   --foreground: #2D2D2D;
+   --background: #F9F7F4;
+   --foreground: #1A1815;
    --card: #FFFFFF;
-   --card-foreground: #2D2D2D;
+   --card-foreground: #1A1815;
    --popover: #FFFFFF;
-   --popover-foreground: #2D2D2D;
-   --primary: #2D2D2D;
-   --primary-foreground: #FAF8F5;
-   --secondary: #F0EDE8;
-   --secondary-foreground: #2D2D2D;
-   --muted: #F0EDE8;
-   --muted-foreground: #6B6560;
-   --accent: #B8860B;
+   --popover-foreground: #1A1815;
+   --primary: #1A1815;
+   --primary-foreground: #F9F7F4;
+   --secondary: #EDE8E1;
+   --secondary-foreground: #1A1815;
+   --muted: #EDE8E1;
+   --muted-foreground: #5C5652;
+   --accent: #A0845C;
    --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-   --border: #E5E0DA;
-   --input: #E5E0DA;
-   --ring: #B8860B;
+   --border: #DDD8D0;
+   --input: #DDD8D0;
+   --ring: #A0845C;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -126,24 +130,44 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+     @apply bg-background text-foreground leading-relaxed;
   }
 }
  
  .animate-fade-in {
-   animation: fadeIn 0.8s ease-out forwards;
+   animation: fadeIn 1s ease-out forwards;
  }
  
  .animate-fade-in-up {
-   animation: fadeInUp 0.8s ease-out forwards;
+   animation: fadeInUp 1s ease-out forwards;
  }
  
+.animate-fade-in-up-delay {
+   animation: fadeInUp 1s ease-out 0.2s forwards;
+   opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+   animation: fadeInUp 1s ease-out 0.4s forwards;
+   opacity: 0;
+}
+
  @keyframes fadeIn {
    from { opacity: 0; }
    to { opacity: 1; }
  }
  
  @keyframes fadeInUp {
-   from { opacity: 0; transform: translateY(20px); }
+   from { opacity: 0; transform: translateY(24px); }
    to { opacity: 1; transform: translateY(0); }
+ }
+ 
+ @media (prefers-reduced-motion: reduce) {
+   .animate-fade-in,
+   .animate-fade-in-up,
+   .animate-fade-in-up-delay,
+   .animate-fade-in-up-delay-2 {
+     animation: none;
+     opacity: 1;
+   }
  }

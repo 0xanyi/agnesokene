@@ -1,5 +1,3 @@
- import { Card, CardContent } from "@/components/ui/card";
- import { Badge } from "@/components/ui/badge";
  import Image from "next/image";
  
  interface TributeCardProps {
@@ -24,33 +22,37 @@
    });
  
    return (
-     <Card className="animate-fade-in-up border-border/50 bg-card shadow-sm">
-       <CardContent className="p-6">
-         <div className="flex items-start justify-between gap-4">
-           <div>
-             <p className="font-semibold text-foreground">{name}</p>
-             {relationship && (
-               <Badge variant="secondary" className="mt-1 text-xs">
-                 {relationship}
-               </Badge>
-             )}
-           </div>
-           <time className="shrink-0 text-xs text-muted-foreground">{date}</time>
+     <article className="group relative border-b border-border/40 pb-8 last:border-b-0">
+       <div className="flex items-baseline justify-between gap-4">
+         <div>
+           <h3 className="font-[family-name:var(--font-serif)] text-lg font-medium text-foreground">
+             {name}
+           </h3>
+           {relationship && (
+             <span className="text-[11px] uppercase tracking-[0.15em] text-gold">
+               {relationship}
+             </span>
+           )}
          </div>
-         <p className="mt-4 leading-relaxed text-warm-gray whitespace-pre-line">
-           {message}
-         </p>
-         {photoUrl && (
-           <div className="relative mt-4 aspect-video overflow-hidden rounded-md">
-             <Image
-               src={photoUrl}
-               alt={`Photo shared by ${name}`}
-               fill
-               className="object-cover"
-             />
-           </div>
-         )}
-       </CardContent>
-     </Card>
+         <time className="shrink-0 text-[11px] tracking-wide text-warm-gray-light">
+           {date}
+         </time>
+       </div>
+ 
+       <blockquote className="mt-4 border-l-2 border-gold/30 pl-5 font-[family-name:var(--font-serif)] text-lg leading-[1.8] text-warm-gray">
+         {message}
+       </blockquote>
+ 
+       {photoUrl && (
+         <div className="relative mt-5 aspect-video overflow-hidden rounded-lg">
+           <Image
+             src={photoUrl}
+             alt={`Photo shared by ${name}`}
+             fill
+             className="object-cover"
+           />
+         </div>
+       )}
+     </article>
    );
  }
