@@ -23,7 +23,7 @@
  
    return (
      <article className="group relative border-b border-border/40 pb-8 last:border-b-0">
-       <div className="flex items-baseline justify-between gap-4">
+       <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
          <div>
            <h3 className="font-[family-name:var(--font-serif)] text-lg font-medium text-foreground">
              {name}
@@ -34,7 +34,7 @@
              </span>
            )}
          </div>
-         <time className="shrink-0 text-[11px] tracking-wide text-warm-gray-light">
+         <time className="text-[11px] tracking-wide text-warm-gray-light sm:shrink-0">
            {date}
          </time>
        </div>

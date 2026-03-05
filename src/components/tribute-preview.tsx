@@ -70,15 +70,18 @@
                    Showing 3 of {total} tributes
                  </p>
                )}
-               <div className="flex gap-4">
+               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
                  <Button
                    asChild
                    variant="outline"
-                   className="border-border/60 text-warm-gray hover:border-gold hover:text-gold"
+                   className="w-full border-border/60 text-warm-gray hover:border-gold hover:text-gold sm:w-auto"
                  >
                    <Link href="/tributes">View All Tributes</Link>
                  </Button>
-                 <Button asChild className="bg-gold text-white hover:bg-gold-light">
+                 <Button
+                   asChild
+                   className="w-full bg-gold text-white hover:bg-gold-light sm:w-auto"
+                 >
                    <Link href="/tributes#share">Share a Tribute</Link>
                  </Button>
                </div>
