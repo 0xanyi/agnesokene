@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# In Loving Memory of Mama Agnes Okene (1939–2026)
+
+A memorial tribute website built to honor and celebrate the life of Mama Agnes Okene. Visitors can read her biography, browse a photo gallery, and submit heartfelt tributes and memories.
+
+## Tech Stack
+
+- **Framework:** [Next.js 16](https://nextjs.org) (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4, shadcn/ui (Radix UI), tw-animate-css
+- **Database:** PostgreSQL via [Prisma 7](https://www.prisma.io/)
+- **Media:** [Cloudinary](https://cloudinary.com/) (next-cloudinary)
+- **Fonts:** Montserrat, Cormorant (via `next/font`)
+
+## Features
+
+- **Hero & Biography** – Landing page with a hero section and biography
+- **Gallery** – Photo gallery with captions and categories
+- **Tributes** – Public tribute submission with name, message, and optional photo
+- **Admin Dashboard** – Approve/manage tributes and gallery images
+- **API Routes** – REST endpoints for tributes, gallery, and admin operations
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 20+
+- PostgreSQL database
+- Cloudinary account (for image uploads)
+
+### Setup
+
+1. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+2. **Configure environment variables**
+
+   Create a `.env` file in the project root:
+
+   ```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/agnesokene"
+   # Cloudinary credentials
+   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="..."
+   ```
+
+3. **Run database migrations**
+
+   ```bash
+   npx prisma migrate deploy
+   ```
+
+4. **Seed the database** (optional)
+
+   ```bash
+   npx tsx prisma/seed.ts
+   ```
+
+5. **Start the dev server**
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000).
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── admin/         # Admin dashboard
+│   ├── api/           # API routes (admin, gallery, tributes)
+│   ├── gallery/       # Gallery page
+│   ├── tributes/      # Tributes page
+│   ├── layout.tsx     # Root layout with navbar & footer
+│   └── page.tsx       # Home page (hero, biography, tribute preview)
+├── components/        # Reusable UI components
+├── generated/         # Prisma generated client
+└── lib/               # Utilities
+prisma/
+├── schema.prisma      # Database schema (Tribute, GalleryImage)
+├── migrations/        # Database migrations
+└── seed.ts            # Seed script
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command         | Description              |
+| --------------- | ------------------------ |
+| `npm run dev`   | Start development server |
+| `npm run build` | Production build         |
+| `npm run start` | Start production server  |
+| `npm run lint`  | Run ESLint               |
