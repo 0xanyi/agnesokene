@@ -34,14 +34,6 @@
              legacy of kindness, resilience, and faith. Her memory lives on in
              the countless lives she touched and the love she so freely shared.
            </p>
-           <div className="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg">
-             <Image
-               src="/images/young-mama2.JPG"
-               alt="Young Mama Agnes Okene"
-               fill
-               className="object-cover"
-             />
-           </div>
          </div>
        </div>
      </section>
