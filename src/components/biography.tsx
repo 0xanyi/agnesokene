@@ -21,7 +21,7 @@
          <div className="space-y-4 text-warm-gray leading-relaxed">
            <p>
              Mama Agnes Okene was a woman of remarkable grace, unwavering faith, and
-             boundless love. Born in 1940, she grew up with a deep sense of
+             boundless love. Born in 1939, she grew up with a deep sense of
              community and an unshakeable commitment to family.
            </p>
            <p>

@@ -19,7 +19,7 @@
          </h1>
          <div className="mx-auto mt-6 h-px w-24 bg-gold" />
          <p className="mt-6 text-lg text-white/80 md:text-xl">
-           1940 &mdash; 2025
+           1939 &mdash; 2026
          </p>
          <p className="mt-4 max-w-xl mx-auto font-[family-name:var(--font-serif)] text-lg italic text-white/70">
            &ldquo;A life beautifully lived, a heart deeply loved, a legacy that
