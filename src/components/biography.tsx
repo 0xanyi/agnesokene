@@ -12,7 +12,7 @@
        <div className="mt-12 grid gap-10 md:grid-cols-[280px_1fr]">
          <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
            <Image
-             src="/images/mama.JPG"
+             src="/images/offical-photo.JPG"
              alt="Mama Agnes Okene portrait"
              fill
              className="object-cover"
