@@ -1,13 +1,13 @@
  import { Hero } from "@/components/hero";
  import { Biography } from "@/components/biography";
- import { TributeFeed } from "@/components/tribute-feed";
+ import { TributePreview } from "@/components/tribute-preview";
  
  export default function Home() {
    return (
      <>
        <Hero />
        <Biography />
-       <TributeFeed />
+       <TributePreview />
      </>
    );
  }

@@ -31,6 +31,8 @@
      tributes,
      hasMore: skip + limit < total,
      total,
+     page,
+     totalPages: Math.ceil(total / limit),
    });
  }
  
