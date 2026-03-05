@@ -1,0 +1,29 @@
+ generator client {
+   provider = "prisma-client"
+   output   = "../src/generated/prisma"
+ }
+ 
+ datasource db {
+   provider = "postgresql"
+ }
+ 
+ model Tribute {
+   id           String   @id @default(cuid())
+   name         String
+   email        String?
+   relationship String?
+   message      String
+   photoUrl     String?
+   approved     Boolean  @default(false)
+   createdAt    DateTime @default(now())
+   updatedAt    DateTime @updatedAt
+ }
+ 
+ model GalleryImage {
+   id        String   @id @default(cuid())
+   url       String
+   caption   String?
+   category  String?
+   order     Int      @default(0)
+   createdAt DateTime @default(now())
+ }
