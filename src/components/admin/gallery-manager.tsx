@@ -91,22 +91,41 @@ export function GalleryManager({ secret }: { secret: string }) {
         const file = selectedFiles[i];
         setUploadProgress(`Uploading ${i + 1} of ${selectedFiles.length}...`);
 
+        const isVideo = file.type.startsWith("video/");
+        const resourceType = isVideo ? "video" : "image";
+
+        const signRes = await fetch("/api/admin/gallery/sign", {
+          method: "POST",
+          headers: { ...headers, "Content-Type": "application/json" },
+          body: JSON.stringify({ resourceType }),
+        });
+
+        if (!signRes.ok) {
+          alert(`Failed to get upload signature for ${file.name}`);
+          continue;
+        }
+
+        const { signature, timestamp, apiKey, folder, uploadUrl } = await signRes.json();
+
         const formData = new FormData();
         formData.append("file", file);
+        formData.append("api_key", apiKey);
+        formData.append("timestamp", String(timestamp));
+        formData.append("signature", signature);
+        formData.append("folder", folder);
 
-        const uploadRes = await fetch("/api/admin/gallery/upload", {
+        const uploadRes = await fetch(uploadUrl, {
           method: "POST",
-          headers,
           body: formData,
         });
 
         if (!uploadRes.ok) {
           const err = await uploadRes.json();
-          alert(`Failed to upload ${file.name}: ${err.error}`);
+          alert(`Failed to upload ${file.name}: ${err.error?.message || "Upload failed"}`);
           continue;
         }
 
-        const { url } = await uploadRes.json();
+        const { secure_url: url } = await uploadRes.json();
 
         const fileCaption =
           selectedFiles.length === 1 ? caption : caption || null;
