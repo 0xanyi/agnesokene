@@ -11,6 +11,8 @@ const links = [
   { href: "/gallery", label: "Gallery" },
 ];
 
+const ctaLink = { href: "/tributes#share", label: "Share a Memory" };
+
 export function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,6 +46,12 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href={ctaLink.href}
+            className="rounded-full border border-gold/60 px-4 py-1.5 text-[11px] uppercase tracking-[0.14em] text-gold transition-colors duration-200 hover:bg-gold hover:text-white"
+          >
+            {ctaLink.label}
+          </Link>
         </div>
 
         <button
@@ -78,6 +86,12 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href={ctaLink.href}
+              className="mt-1 rounded-full border border-gold/60 px-3 py-2 text-center text-[12px] uppercase tracking-[0.14em] text-gold transition-colors duration-200 hover:bg-gold hover:text-white"
+            >
+              {ctaLink.label}
+            </Link>
           </div>
         </div>
       )}
