@@ -4,7 +4,7 @@
  import { TributeCard } from "@/components/tribute-card";
  import { Button } from "@/components/ui/button";
  
- const PER_PAGE = 6;
+ const PER_PAGE = 12;
  
  interface Tribute {
    id: string;
