@@ -72,7 +72,7 @@
    const relationship = body.relationship
      ? sanitize(body.relationship as string, 100)
      : null;
-   const message = sanitize((body.message as string) || "", 2000);
+   const message = sanitize((body.message as string) || "", 10000);
  
    if (!name || !message) {
      return NextResponse.json(
