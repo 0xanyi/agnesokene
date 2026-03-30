@@ -81,7 +81,7 @@
          </p>
        ) : (
          <>
-           <div className="space-y-6">
+           <div className="grid gap-6 md:grid-cols-2">
              {tributes.map((t) => (
                <TributeCard key={t.id} {...t} />
              ))}

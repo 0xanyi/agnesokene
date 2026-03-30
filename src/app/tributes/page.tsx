@@ -17,7 +17,7 @@ export default function TributesPage() {
         <TributeForm onSuccess={handleSuccess} />
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 pt-20 pb-8">
+      <div className="mx-auto max-w-6xl px-6 pt-20 pb-8">
         <div className="text-center">
           <p className="text-[11px] uppercase tracking-[0.4em] text-gold">
             Words of Love
