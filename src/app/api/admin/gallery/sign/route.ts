@@ -6,9 +6,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  const apiKey = process.env.CLOUDINARY_API_KEY;
-  const apiSecret = process.env.CLOUDINARY_API_SECRET;
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME?.trim();
+  const apiKey = process.env.CLOUDINARY_API_KEY?.trim();
+  const apiSecret = process.env.CLOUDINARY_API_SECRET?.trim();
 
   if (!cloudName || !apiKey || !apiSecret) {
     return NextResponse.json(
@@ -23,7 +23,9 @@ export async function POST(request: NextRequest) {
   const timestamp = Math.round(Date.now() / 1000);
   const folder = "agnesokene/gallery";
 
-  const signatureString = `folder=${folder}&timestamp=${timestamp}${apiSecret}`;
+  // Cloudinary expects: SHA1(alphabetically_sorted_params + api_secret)
+  const paramsToSign = `folder=${folder}&timestamp=${timestamp}`;
+  const signatureString = `${paramsToSign}${apiSecret}`;
   const encoder = new TextEncoder();
   const data = encoder.encode(signatureString);
   const hashBuffer = await crypto.subtle.digest("SHA-1", data);
