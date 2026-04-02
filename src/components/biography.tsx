@@ -41,7 +41,7 @@ export function Biography() {
               that shaped her remarkable life.
             </p>
             <p className="text-warm-gray leading-[1.8]">
-              She was born in Eruemukohwarien to her father, Okhere, who hailed
+              She was born in Eruemukohwarien to her father, Okerhe, who hailed
               from Ekakpamre village in Ughelli South Local Government Area of
               Delta State, and her mother, Idolor, from Okpara Inland in Ethiope
               East Local Government Area. Although her parents originally lived
@@ -54,13 +54,29 @@ export function Biography() {
         {/* Full Biography */}
         <div className="mx-auto mt-16 max-w-3xl space-y-6">
           <p className="text-warm-gray leading-[1.8]">
-            She was the youngest child of her father, Okhere, and from the very
+            She was the youngest child of her father, Okerhe, and from the very
             beginning of her life she carried the quiet strength and resilience
             that would come to define her journey.
           </p>
           <p className="text-warm-gray leading-[1.8]">
+            Her siblings, in order of seniority, were:
+          </p>
+          <ul className="space-y-1 text-warm-gray leading-[1.8] pl-6 list-disc">
+            <li>Aghe (Female)</li>
+            <li>Ighokedo (Female)</li>
+            <li>Eyako (Female)</li>
+            <li>Esiewhenoja (Male)</li>
+            <li>Powder (Male)</li>
+            <li>Maccaver (Male)</li>
+            <li>Omokieseri (Female)</li>
+            <li>Akpoba, also known as Titi Rode (Female)</li>
+            <li>Agnes, also known as Titi Otete (Female)</li>
+            <li>Victoria (Female)</li>
+          </ul>
+
+          <p className="text-warm-gray leading-[1.8]">
             After some years in Eruemukohwarien, she and her siblings were taken
-            to Okpara by their mother, Idolor, where they continued their
+            to Okpara by their mother, Idonor, where they continued their
             upbringing within the embrace of family and community. Growing up
             among many siblings and relatives, she developed the strong family
             values, warmth, and sense of responsibility that remained with her
@@ -75,7 +91,7 @@ export function Biography() {
             had no opportunity for formal education, she possessed a wisdom that
             life itself had taught her. She was naturally enterprising,
             hardworking, and remarkably astute in business. With determination
-            and courage, she traded across various parts of Jos, Urhobo land,
+            and courage, she traded across various parts of Urhobo land,
             Kwale, and Benin, building her livelihood through resilience,
             discipline, and faith.
           </p>
@@ -126,17 +142,19 @@ export function Biography() {
               She is lovingly survived by her children:
             </p>
             <ul className="mt-6 space-y-2 text-warm-gray leading-[1.8]">
-              <li>Mrs Catherine Sefia</li>
-              <li>Mrs Philomena Esi</li>
-              <li>Mrs Francisca Ogboko</li>
-              <li>Mrs Beauty Baloko</li>
-              <li>Mr Peter Okene</li>
-              <li>Miss Pauline Okene</li>
-              <li>Pastor Dominic Okene</li>
-              <li>Pastor Georgine Obi</li>
-              <li>Mr Ejiro Okene</li>
-              <li>Mr Francis Okene</li>
-              <li>Mr Bright Erhuen</li>
+              <li>Catherine</li>
+              <li>Philomena</li>
+              <li>Francisca</li>
+              <li>Beauty</li>
+              <li>Jude (Late)</li>
+              <li>Peter</li>
+              <li>Pauline</li>
+              <li>Pastor Dominic</li>
+              <li>Pastor Georgine</li>
+              <li>Ejiro</li>
+              <li>Simple (Late)</li>
+              <li>Francis</li>
+              <li>Bright</li>
             </ul>
             <p className="mt-8 font-[family-name:var(--font-serif)] text-lg italic text-warm-gray-light">
               Forever in our hearts. Forever in our memories.
