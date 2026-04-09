@@ -27,3 +27,11 @@
    order     Int      @default(0)
    createdAt DateTime @default(now())
  }
+
+ model SiteSettings {
+   id              String   @id @default("global")
+   livestreamOn    Boolean  @default(false)
+   livestreamUrl   String?
+   livestreamTitle String?
+   updatedAt       DateTime @updatedAt
+ }

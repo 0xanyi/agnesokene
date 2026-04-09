@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { GalleryManager } from "@/components/admin/gallery-manager";
+import { LivestreamManager } from "@/components/admin/livestream-manager";
 
 interface Tribute {
   id: string;
@@ -18,7 +19,7 @@ interface Tribute {
   createdAt: string;
 }
 
-type Tab = "tributes" | "gallery";
+type Tab = "tributes" | "gallery" | "livestream";
 type TributeFilter = "all" | "pending" | "approved";
 
 export default function AdminPage() {
@@ -175,6 +176,12 @@ export default function AdminPage() {
           onClick={() => setActiveTab("gallery")}
         >
           Gallery
+        </Button>
+        <Button
+          variant={activeTab === "livestream" ? "default" : "outline"}
+          onClick={() => setActiveTab("livestream")}
+        >
+          Livestream
         </Button>
       </div>
 
@@ -358,6 +365,8 @@ export default function AdminPage() {
       )}
 
       {activeTab === "gallery" && <GalleryManager secret={secret} />}
+
+      {activeTab === "livestream" && <LivestreamManager secret={secret} />}
     </div>
   );
 }
