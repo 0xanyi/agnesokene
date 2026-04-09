@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 interface LiveStreamData {
   live: boolean;
@@ -9,41 +9,65 @@ interface LiveStreamData {
 }
 
 export function LiveStreamPlayer() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playerRef = useRef<unknown>(null);
-  const hlsRef = useRef<unknown>(null);
+  const playerRef = useRef<{ destroy: () => void } | null>(null);
+  const hlsRef = useRef<{ destroy: () => void } | null>(null);
+  const initializedUrlRef = useRef<string | null>(null);
   const [stream, setStream] = useState<LiveStreamData | null>(null);
 
-  useEffect(() => {
-    let cancelled = false;
-
-    async function checkStream() {
-      try {
-        const res = await fetch("/api/livestream");
-        if (!cancelled) {
-          const data: LiveStreamData = await res.json();
-          setStream(data);
+  const pollStream = useCallback(async () => {
+    try {
+      const res = await fetch("/api/livestream");
+      const data: LiveStreamData = await res.json();
+      setStream((prev) => {
+        if (prev?.live === data.live && prev?.url === data.url && prev?.title === data.title) {
+          return prev;
         }
-      } catch {
-        if (!cancelled) setStream({ live: false });
-      }
+        return data;
+      });
+    } catch {
+      /* keep previous state on network blip */
     }
-
-    checkStream();
-    const interval = setInterval(checkStream, 30_000);
-
-    return () => {
-      cancelled = true;
-      clearInterval(interval);
-    };
   }, []);
 
   useEffect(() => {
-    if (!stream?.live || !stream.url || !videoRef.current) return;
+    pollStream();
+    const interval = setInterval(pollStream, 30_000);
+    return () => clearInterval(interval);
+  }, [pollStream]);
+
+  useEffect(() => {
+    if (!stream?.live || !stream.url || !videoRef.current) {
+      // Stream went offline — tear down
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+      if (playerRef.current) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
+      initializedUrlRef.current = null;
+      return;
+    }
+
+    // Already initialized for this URL — skip
+    if (initializedUrlRef.current === stream.url) return;
 
     const video = videoRef.current;
-    let hls: import("hls.js").default | null = null;
-    let player: import("plyr").default | null = null;
+
+    // Clean up previous instance if URL changed
+    if (hlsRef.current) {
+      hlsRef.current.destroy();
+      hlsRef.current = null;
+    }
+    if (playerRef.current) {
+      playerRef.current.destroy();
+      playerRef.current = null;
+    }
+
+    let disposed = false;
 
     async function initPlayer() {
       const [{ default: Hls }, { default: Plyr }] = await Promise.all([
@@ -51,7 +75,9 @@ export function LiveStreamPlayer() {
         import("plyr"),
       ]);
 
-      // Inject Plyr styles
+      if (disposed) return;
+
+      // Inject Plyr styles once
       if (!document.getElementById("plyr-css")) {
         const link = document.createElement("link");
         link.id = "plyr-css";
@@ -61,47 +87,72 @@ export function LiveStreamPlayer() {
       }
 
       if (Hls.isSupported()) {
-        hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+        const hls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+          liveSyncDurationCount: 3,
+          liveMaxLatencyDurationCount: 6,
+          liveDurationInfinity: true,
+          manifestLoadingMaxRetry: 6,
+          manifestLoadingRetryDelay: 1000,
+          levelLoadingMaxRetry: 6,
+          levelLoadingRetryDelay: 1000,
+          fragLoadingMaxRetry: 6,
+          fragLoadingRetryDelay: 1000,
+        });
+
         hls.loadSource(stream!.url!);
         hls.attachMedia(video);
+
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          player = new Plyr(video, {
+          if (disposed) return;
+          const player = new Plyr(video, {
             controls: ["play", "mute", "volume", "fullscreen"],
             autoplay: true,
             muted: true,
           });
           playerRef.current = player;
         });
+
+        // Recover from fatal errors by reloading the source
+        hls.on(Hls.Events.ERROR, (_event, data) => {
+          if (!data.fatal) return;
+          if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+            hls.startLoad();
+          } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+            hls.recoverMediaError();
+          } else {
+            // Unrecoverable — full reinit on next poll
+            initializedUrlRef.current = null;
+          }
+        });
+
         hlsRef.current = hls;
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        // Safari native HLS
         video.src = stream!.url!;
-        player = new Plyr(video, {
+        const player = new Plyr(video, {
           controls: ["play", "mute", "volume", "fullscreen"],
           autoplay: true,
           muted: true,
         });
         playerRef.current = player;
       }
+
+      initializedUrlRef.current = stream!.url!;
     }
 
     initPlayer();
 
     return () => {
-      if (hls && typeof (hls as { destroy: () => void }).destroy === "function") {
-        (hls as { destroy: () => void }).destroy();
-      }
-      if (player && typeof (player as { destroy: () => void }).destroy === "function") {
-        (player as { destroy: () => void }).destroy();
-      }
-      hlsRef.current = null;
-      playerRef.current = null;
+      disposed = true;
     };
   }, [stream]);
 
   if (!stream?.live) return null;
 
   return (
-    <section className="bg-[#0C0A08] py-10 sm:py-14">
+    <section ref={containerRef} className="bg-[#0C0A08] py-10 sm:py-14">
       <div className="mx-auto max-w-4xl px-5 sm:px-6">
         <div className="mb-6 flex items-center justify-center gap-3">
           <span className="relative flex h-2.5 w-2.5">
