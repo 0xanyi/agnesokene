@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { Volume2, VolumeOff } from "lucide-react";
 
 interface LiveStreamData {
   live: boolean;
@@ -11,10 +12,11 @@ interface LiveStreamData {
 export function LiveStreamPlayer() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playerRef = useRef<{ destroy: () => void } | null>(null);
+  const playerRef = useRef<{ destroy: () => void; muted: boolean } | null>(null);
   const hlsRef = useRef<{ destroy: () => void } | null>(null);
   const initializedUrlRef = useRef<string | null>(null);
   const [stream, setStream] = useState<LiveStreamData | null>(null);
+  const [muted, setMuted] = useState(true);
 
   const pollStream = useCallback(async () => {
     try {
@@ -108,10 +110,11 @@ export function LiveStreamPlayer() {
           if (disposed) return;
           const player = new Plyr(video, {
             controls: ["play", "mute", "volume", "fullscreen"],
-            autoplay: true,
             muted: true,
           });
           playerRef.current = player;
+          video.muted = true;
+          video.play().catch(() => {});
         });
 
         // Recover from fatal errors by reloading the source
@@ -133,10 +136,11 @@ export function LiveStreamPlayer() {
         video.src = stream!.url!;
         const player = new Plyr(video, {
           controls: ["play", "mute", "volume", "fullscreen"],
-          autoplay: true,
           muted: true,
         });
         playerRef.current = player;
+        video.muted = true;
+        video.play().catch(() => {});
       }
 
       initializedUrlRef.current = stream!.url!;
@@ -148,6 +152,24 @@ export function LiveStreamPlayer() {
       disposed = true;
     };
   }, [stream]);
+
+  function handleUnmute() {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = false;
+      if (playerRef.current) playerRef.current.muted = false;
+    }
+    setMuted(false);
+  }
+
+  function handleMute() {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      if (playerRef.current) playerRef.current.muted = true;
+    }
+    setMuted(true);
+  }
 
   if (!stream?.live) return null;
 
@@ -170,8 +192,27 @@ export function LiveStreamPlayer() {
           </h2>
         )}
 
-        <div className="overflow-hidden rounded-lg shadow-2xl shadow-black/50">
-          <video ref={videoRef} playsInline />
+        <div className="relative overflow-hidden rounded-lg shadow-2xl shadow-black/50">
+          <video ref={videoRef} playsInline autoPlay muted />
+
+          {muted && (
+            <button
+              onClick={handleUnmute}
+              className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 text-sm text-white/90 backdrop-blur-sm transition-colors hover:bg-black/90"
+            >
+              <VolumeOff className="h-4 w-4" />
+              <span>Tap to unmute</span>
+            </button>
+          )}
+
+          {!muted && (
+            <button
+              onClick={handleMute}
+              className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full bg-black/50 p-2 text-white/70 backdrop-blur-sm transition-opacity hover:bg-black/70 hover:text-white/90"
+            >
+              <Volume2 className="h-4 w-4" />
+            </button>
+          )}
         </div>
       </div>
     </section>
